@@ -1,20 +1,21 @@
-FROM ubuntu:20.04
+# Stage 1: Build
+FROM eclipse-temurin:17-jdk-alpine as build
+WORKDIR /workspace/app
 
-# Installazione delle dipendenze necessarie
-RUN apt-get update && apt-get install -y wget unzip
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
+COPY src src
+RUN ./mvnw install -DskipTests
 
-# Scarica e installa OpenJDK 22 (adatta il link di download all'ultima versione disponibile)
-RUN wget https://download.java.net/java/GA/jdk22/ri/openjdk-22+36_linux-x64_bin.tar.gz
-RUN tar -xzf openjdk-22+36_linux-x64_bin.tar.gz -C /opt
-RUN mv /opt/jdk-22 /opt/java-22
-ENV JAVA_HOME /opt/java-22
-ENV PATH $JAVA_HOME/bin:$PATH
+# Unpack JAR
+RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
-# Crea una directory temporanea
+# Stage 2: Run
+FROM eclipse-temurin:17-jdk-alpine
 VOLUME /tmp
-
-# Copia il file JAR dalla directory target del progetto nella directory app.jar nel container
-COPY target/studyProject-0.0.1-SNAPSHOT.jar app.jar
-
-# Imposta il punto di ingresso per avviare l'applicazione
-ENTRYPOINT ["java", "--enable-preview", "-jar", "/app.jar"]
+ARG DEPENDENCY=/workspace/app/target/dependency
+COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
+COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
+COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
+ENTRYPOINT ["java","-cp","app:app/lib/*","com.hebadenysprojects.studyProject.StudyProjectApplication"]

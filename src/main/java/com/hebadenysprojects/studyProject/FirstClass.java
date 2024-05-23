@@ -12,6 +12,6 @@ public class FirstClass {
     }
 
     public String sayHello(){
-        return STR."Hello Guys ====> myVar = \{myVar}";
+        return "Hello Guys ====> myVar = "+myVar;
     }
 }
