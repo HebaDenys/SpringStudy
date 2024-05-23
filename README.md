@@ -43,6 +43,16 @@ Il progetto "studyProject" è un'applicazione Spring Boot progettata per dimostr
     docker-compose up --build
     ```
 
+    ```sh
+    PROFILE=default docker-compose up --build
+    ```
+
+    ```sh
+    PROFILE=dev docker-compose up --build
+    ```
+
+
+
 4. Apri il browser e vai su `http://localhost:8080`.
 
 ## Miglioramenti

@@ -5,7 +5,7 @@
 </head>
 <body>
 <h1>Employee List</h1>
-<form th:action="@{/employees}" th:object="${employee}" method="post">
+<form th:action="@{/employees/add}" th:object="${employee}" method="post">
     <input type="text" th:field="*{name}" placeholder="Name"/>
     <input type="text" th:field="*{role}" placeholder="Role"/>
     <button type="submit">Add Employee</button>
