@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Start Default" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="studyProject" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.hebadenysprojects.studyProject.StudyProjectApplication" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
