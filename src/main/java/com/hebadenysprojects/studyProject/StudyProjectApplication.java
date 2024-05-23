@@ -22,8 +22,8 @@ public class StudyProjectApplication {
         // Ottiene e utilizza il servizio MyFirstService
         MyFirstService myFirstService = context.getBean(MyFirstService.class);
         System.out.println("MyFirstService Story: " + myFirstService.tellAStory());
-        System.out.println("MyFirstService Property myProp: " + myFirstService.getMyProp());
-        System.out.println("MyFirstService Property myProp2: " + myFirstService.getMyProp2());
+        System.out.println("MyFirstService Property myProp: a" + myFirstService.getMyProp());
+        System.out.println("MyFirstService Property myProp2: 2a" + myFirstService.getMyProp2());
 
         // L'applicazione è stata avviata con successo e tutte le componenti Spring sono state testate
     }

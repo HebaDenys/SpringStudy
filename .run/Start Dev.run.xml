@@ -2,6 +2,7 @@
   <configuration default="false" name="Start Dev" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
     <option name="ACTIVE_PROFILES" value="dev" />
     <module name="studyProject" />
+    <target name="&lt;none&gt;:&lt;none&gt;" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="com.hebadenysprojects.studyProject.StudyProjectApplication" />
     <method v="2">
       <option name="Make" enabled="true" />

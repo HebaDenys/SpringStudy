@@ -4,5 +4,9 @@ services:
     build: .
     ports:
       - "8080:8080"
+    volumes:
+      - .:/workspace/app
+      - ~/.m2:/root/.m2
     environment:
       - SPRING_PROFILES_ACTIVE=default
+    command: ./mvnw spring-boot:run
