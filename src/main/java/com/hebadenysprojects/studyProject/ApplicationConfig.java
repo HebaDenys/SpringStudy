@@ -5,29 +5,37 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
+/**
+ * Configuration class for defining Spring beans.
+ */
 @Configuration
 public class ApplicationConfig {
 
-    @Bean("renamedBean")
-    public SecondClass secondClass(){
+    @Bean
+    public String primaryInstanceIdentifier() {
+        return "Primary Bean Instance";
+    }
+
+    @Bean("customNamedSecondClass")
+    public SecondClass secondClass() {
         return new SecondClass();
     }
 
+    @Bean
+    @Qualifier("secondaryBean")
+    public FirstClass secondaryFirstClass() {
+        return new FirstClass("Secondary Bean Instance");
+    }
 
     @Bean
-    @Qualifier("bean2")
-    public FirstClass secondBean(){
-        return new FirstClass("Second Bean");
+    @Qualifier("tertiaryBean")
+    public FirstClass tertiaryFirstClass() {
+        return new FirstClass("Tertiary Bean Instance");
     }
-    @Bean
-    @Qualifier("bean3")
-    public FirstClass firstClass(){
-        return new FirstClass("First Bean Var");
-    }
+
     @Bean
     @Primary
-    public FirstClass thirdClass(){
-        return new FirstClass("Third Bean Var");
+    public FirstClass primaryFirstClass(String primaryInstanceIdentifier) {
+        return new FirstClass(primaryInstanceIdentifier);
     }
-
 }

@@ -4,27 +4,28 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
+/**
+ * Main application class for the Study Project.
+ */
 @SpringBootApplication
 public class StudyProjectApplication {
 
     public static void main(String[] args) {
-        // Avvia l'applicazione Spring e ottiene il contesto dell'applicazione
+        // Start the Spring application and retrieve the application context
         ApplicationContext context = SpringApplication.run(StudyProjectApplication.class, args);
 
-        // Ottiene e utilizza il bean FirstClass
-        FirstClass firstClass = context.getBean("firstClass", FirstClass.class);
-        System.out.println("Message from FirstClass: " + firstClass.sayHello());
+        // Access and use the FirstClass bean
+        FirstClass primaryFirstClass = context.getBean(FirstClass.class);
+        System.out.println("Primary FirstClass says: " + primaryFirstClass.greet());
 
-        // Ottiene e utilizza il bean SecondClass rinominato
-        SecondClass secondClass = context.getBean("renamedBean", SecondClass.class);
-        System.out.println("Message from SecondClass: " + secondClass.sayByeBye());
+        // Access and use the renamed SecondClass bean
+        SecondClass secondClass = context.getBean("customNamedSecondClass", SecondClass.class);
+        System.out.println("SecondClass says: " + secondClass.farewell());
 
-        // Ottiene e utilizza il servizio MyFirstService
+        // Access and use the MyFirstService bean
         MyFirstService myFirstService = context.getBean(MyFirstService.class);
-        System.out.println("MyFirstService Story: " + myFirstService.tellAStory());
-        System.out.println("MyFirstService Property myProp: a" + myFirstService.getMyProp());
-        System.out.println("MyFirstService Property myProp2: 2a" + myFirstService.getMyProp2());
-
-        // L'applicazione è stata avviata con successo e tutte le componenti Spring sono state testate
+        System.out.println("MyFirstService tells: " + myFirstService.tellStory());
+        System.out.println("Custom Property: " + myFirstService.getCustomProperty());
+        System.out.println("Numeric Property: " + myFirstService.getNumericProperty());
     }
 }

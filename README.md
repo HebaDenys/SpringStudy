@@ -35,7 +35,7 @@ Il progetto "studyProject" è un'applicazione Spring Boot progettata per dimostr
 
 2. Costruisci l'applicazione con Maven:
     ```sh
-    ./mvnw clean install
+    mvn clean install
     ```
 
 3. Avvia l'applicazione con Docker Compose:
